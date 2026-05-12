@@ -1,0 +1,440 @@
+/* ============================================================
+   VARIABLES Y RESET
+   ============================================================ */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-primary: #0f0f0f;
+    --bg-secondary: #1a1a1a;
+    --bg-card: #1f1f1f;
+    --bg-card-hover: #262626;
+    --accent: #dc2626;
+    --accent-hover: #b91c1c;
+    --text-primary: #f5f5f5;
+    --text-secondary: #a3a3a3;
+    --text-muted: #737373;
+    --border: #2a2a2a;
+    --danger: #dc2626;
+    --success: #16a34a;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+a { color: inherit; }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header {
+    background: var(--bg-secondary);
+    border-bottom: 2px solid var(--accent);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.site-header__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.site-logo {
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+    text-decoration: none;
+}
+
+.site-logo span { color: var(--accent); }
+
+.site-nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.site-nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.site-nav a:hover { color: var(--accent); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+    background:
+        linear-gradient(135deg, rgba(15,15,15,0.85), rgba(26,26,26,0.95)),
+        radial-gradient(circle at top right, rgba(220,38,38,0.15), transparent 50%);
+    padding: 6rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+}
+
+.hero h1 {
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    letter-spacing: 5px;
+    margin-bottom: 1rem;
+    line-height: 1;
+}
+
+.hero h1 span { color: var(--accent); }
+
+.hero p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+}
+
+/* ============================================================
+   MAIN
+   ============================================================ */
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.section-header h2 {
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    font-size: 2.2rem;
+    letter-spacing: 3px;
+}
+
+/* ============================================================
+   STATS
+   ============================================================ */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.stat-card {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--accent);
+}
+
+.stat-card__value {
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    font-size: 2.8rem;
+    color: var(--accent);
+    line-height: 1;
+}
+
+.stat-card__label {
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+}
+
+/* ============================================================
+   MEMBER CARDS
+   ============================================================ */
+.member-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.member-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 0.2s;
+}
+
+.member-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.member-card__name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.member-card__meta {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.member-card__detail {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4rem 0;
+    font-size: 0.88rem;
+    gap: 0.5rem;
+}
+
+.member-card__detail-label {
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+}
+
+.member-card__detail-value {
+    text-align: right;
+    word-break: break-word;
+}
+
+.member-card__actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+    font-family: inherit;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn--primary {
+    background: var(--accent);
+    color: white;
+}
+.btn--primary:hover { background: var(--accent-hover); }
+
+.btn--secondary {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+}
+.btn--secondary:hover {
+    border-color: var(--accent);
+    color: var(--text-primary);
+}
+
+.btn--danger {
+    background: transparent;
+    color: var(--danger);
+    border: 1px solid var(--danger);
+}
+.btn--danger:hover {
+    background: var(--danger);
+    color: white;
+}
+
+.btn--small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+}
+
+/* ============================================================
+   FORMS
+   ============================================================ */
+.form-container {
+    max-width: 720px;
+    margin: 3rem auto;
+    padding: 2.5rem;
+    background: var(--bg-card);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.form-container h1 {
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    letter-spacing: 3px;
+    margin-bottom: 1.5rem;
+    color: var(--accent);
+}
+
+.form-container form p { margin-bottom: 1.2rem; }
+
+.form-container label {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="date"],
+.form-container input[type="number"],
+.form-container input[type="file"],
+.form-container select,
+.form-container textarea {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+}
+
+.form-container input:focus,
+.form-container select:focus,
+.form-container textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.form-container input[type="checkbox"] {
+    width: auto;
+    margin-right: 0.5rem;
+    transform: scale(1.2);
+    accent-color: var(--accent);
+}
+
+.form-container button[type="submit"] {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 0.9rem 1.8rem;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: inherit;
+}
+
+.form-container button[type="submit"]:hover { background: var(--accent-hover); }
+
+.form-container .errorlist {
+    color: var(--danger);
+    list-style: none;
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+}
+
+.form-container fieldset {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-container legend {
+    padding: 0 0.5rem;
+    color: var(--accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+}
+
+.helptext {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    display: block;
+    margin-top: 0.3rem;
+}
+
+/* ============================================================
+   MESSAGES
+   ============================================================ */
+.message {
+    padding: 1rem 1.5rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    border-left: 4px solid;
+}
+.message--success {
+    background: rgba(22, 163, 74, 0.1);
+    border-color: var(--success);
+    color: #4ade80;
+}
+.message--error {
+    background: rgba(220, 38, 38, 0.1);
+    border-color: var(--danger);
+    color: #f87171;
+}
+
+/* ============================================================
+   EMPTY STATE Y FOOTER
+   ============================================================ */
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-muted);
+    background: var(--bg-card);
+    border-radius: 8px;
+    border: 1px dashed var(--border);
+}
+
+.site-footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    margin-top: 4rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 600px) {
+    .main-container { padding: 2rem 1rem; }
+    .hero { padding: 3rem 1rem; }
+    .form-container { padding: 1.5rem; margin: 1.5rem 1rem; }
+}

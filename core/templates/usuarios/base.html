@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Rocky Point Motoclub{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'core/css/styles.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a href="{% url 'lista_usuarios' %}" class="site-logo">
+                ROCKY POINT <span>MOTOCLUB</span>
+            </a>
+            <nav class="site-nav">
+                <a href="{% url 'lista_usuarios' %}">Miembros</a>
+                <a href="{% url 'crear_usuario_paso1' %}">Inscripción</a>
+            </nav>
+        </div>
+    </header>
+
+    {% if messages %}
+    <div class="main-container" style="padding-bottom: 0;">
+        {% for message in messages %}
+            <div class="message message--{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <p>© {% now "Y" %} Rocky Point Motoclub · Hermandad sobre dos ruedas</p>
+    </footer>
+</body>
+</html>

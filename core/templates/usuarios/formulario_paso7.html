@@ -1,0 +1,120 @@
+{% extends 'usuarios/base.html' %}
+{% block title %}{{ titulo }} - Rocky Point Motoclub{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h1>{{ titulo }}</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {# === 1. Liberación de Responsabilidad Social === #}
+    <fieldset>
+        <legend><strong>Liberación de Responsabilidad Social</strong></legend>
+        <p>
+            Yo <strong>{{ usuario.nombre }} {{ usuario.apellido }}</strong>,
+            portador de la cédula de identidad número
+            <strong>{{ usuario.documento_identidad }}</strong>,
+            declaro que conozco todos los riesgos que involucran las actividades
+            deportivas a motor y que haré uso correcto de las instalaciones
+            autorizadas para la práctica deportiva bajo mi única responsabilidad.
+            Así mismo declaro que exonero de toda responsabilidad Penal, Civil o
+            Administrativa a la Alcaldía Municipal de Rocky Point y a la empresa
+            MASSEQ por hechos o accidentes ocurridos antes, durante y después de
+            la práctica deportiva o recreativa que realice. Por último, doy
+            autorización para mi traslado a la clínica u hospital más cercano,
+            en caso de presentarse algún accidente y autorizo a los médicos a
+            atenderme debidamente.
+        </p>
+        <p>
+            {{ form.acepta_liberacion_responsabilidad }}
+            <label for="{{ form.acepta_liberacion_responsabilidad.id_for_label }}">
+                {{ form.acepta_liberacion_responsabilidad.label }}
+            </label>
+            {% if form.acepta_liberacion_responsabilidad.errors %}
+                <span style="color:red">{{ form.acepta_liberacion_responsabilidad.errors|join:", " }}</span>
+            {% endif %}
+        </p>
+    </fieldset>
+
+    <br>
+
+    {# === 2. Aceptación Tratamiento de Datos === #}
+    <fieldset>
+        <legend><strong>Aceptación Tratamiento de Datos</strong></legend>
+        <p>
+            Yo <strong>{{ usuario.nombre }} {{ usuario.apellido }}</strong>,
+            portador de la cédula de identidad número
+            <strong>{{ usuario.documento_identidad }}</strong>,
+            autorizo a "ROCKY POINT MOTOCLUB" a que conserven en ficheros informáticos
+            y/o en cualquier otro soporte físico los datos personales que le han
+            sido proporcionados de forma voluntaria y a tratar esa información con
+            el objeto que le han sido facilitados, es decir, para la administración
+            y gestión. Asimismo, el firmante declara conocer y aceptar las normas
+            generales de funcionamiento del Club de Motociclismo, de las actividades
+            y aquellas genéricas de funcionamiento. Por su parte "ROCKY POINT MOTOCLUB"
+            informa al firmante que su información personal figura en sus oficinas,
+            en las que podrá solicitar el contenido exacto de ella y en donde podrá
+            ejercer los derechos de rectificación, anulación o modificación que
+            pudiera corresponderle, así como a modificar esta autorización en
+            cualquier sentido.
+        </p>
+        <p>
+            {{ form.acepta_tratamiento_datos }}
+            <label for="{{ form.acepta_tratamiento_datos.id_for_label }}">
+                {{ form.acepta_tratamiento_datos.label }}
+            </label>
+            {% if form.acepta_tratamiento_datos.errors %}
+                <span style="color:red">{{ form.acepta_tratamiento_datos.errors|join:", " }}</span>
+            {% endif %}
+        </p>
+    </fieldset>
+
+    <br>
+
+    {# === 3. Permiso de Fotografías === #}
+    <fieldset>
+        <legend><strong>Permiso de Fotografías</strong></legend>
+        <p>
+            Yo <strong>{{ usuario.nombre }} {{ usuario.apellido }}</strong>,
+            portador de la cédula de identidad número
+            <strong>{{ usuario.documento_identidad }}</strong>,
+            declaro que autorizo a que "ROCKY POINT MOTOCLUB" pueda realizar
+            fotografías, durante las actividades, para su posible utilización
+            en medios de comunicación, redes sociales, soportes informáticos o
+            exhibición en otros medios del centro.
+        </p>
+        <p>
+            {{ form.acepta_permiso_fotografias }}
+            <label for="{{ form.acepta_permiso_fotografias.id_for_label }}">
+                {{ form.acepta_permiso_fotografias.label }}
+            </label>
+            {% if form.acepta_permiso_fotografias.errors %}
+                <span style="color:red">{{ form.acepta_permiso_fotografias.errors|join:", " }}</span>
+            {% endif %}
+        </p>
+    </fieldset>
+
+    <br>
+
+    {# === 4. Firma de Conformidad === #}
+    <fieldset>
+        <legend><strong>Firma de Conformidad del Proceso de Inscripción</strong></legend>
+        <p>
+            <label for="{{ form.firma_conformidad.id_for_label }}">
+                {{ form.firma_conformidad.label }}
+            </label>
+            <br>
+            {{ form.firma_conformidad }}
+            {% if form.firma_conformidad.errors %}
+                <span style="color:red">{{ form.firma_conformidad.errors|join:", " }}</span>
+            {% endif %}
+        </p>
+    </fieldset>
+    <br>
+
+        <button type="submit">Finalizar Registro</button>
+    </form>
+    <br>
+    <a href="{% url 'lista_usuarios' %}" class="btn btn--secondary">Cancelar</a>
+</div>
+{% endblock %}

@@ -1,25 +1,85 @@
-<h1>Lista de Usuarios</h1>
+{% extends 'usuarios/base.html' %}
 
-<a href="{% url 'crear_usuario_paso1' %}">
-    Crear Usuario
-</a>
+{% block title %}Inicio - Rocky Point Motoclub{% endblock %}
 
-<hr>
-
-{% for usuario in usuarios %}
-
-<p>
-    {{ usuario.nombre }} |
-    {{ usuario.email }} |
-    {{ usuario.edad }}
-
-    <a href="{% url 'editar_usuario' usuario.id %}">
-        Editar
+{% block content %}
+<section class="hero">
+    <h1>ROCKY POINT <span>MOTOCLUB</span></h1>
+    <p>
+        Hermandad sobre dos ruedas. Pasión, respeto y carretera.
+        Conoce a los miembros que hacen rugir nuestro club.
+    </p>
+    <a href="{% url 'crear_usuario_paso1' %}" class="btn btn--primary">
+        Únete al club
     </a>
+</section>
 
-    <a href="{% url 'eliminar_usuario' usuario.id %}">
-        Eliminar
-    </a>
-</p>
+<div class="main-container">
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-card__value">{{ usuarios|length }}</div>
+            <div class="stat-card__label">Miembros activos</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-card__value">2026</div>
+            <div class="stat-card__label">Año en curso</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-card__value">100%</div>
+            <div class="stat-card__label">Pasión por la moto</div>
+        </div>
+    </div>
 
-{% endfor %}
+    <div class="section-header">
+        <h2>Nuestros miembros</h2>
+        <a href="{% url 'crear_usuario_paso1' %}" class="btn btn--primary">
+            + Nuevo miembro
+        </a>
+    </div>
+
+    {% if usuarios %}
+    <div class="member-grid">
+        {% for usuario in usuarios %}
+        <div class="member-card">
+            <div class="member-card__name">
+                {{ usuario.nombre }} {{ usuario.apellido }}
+            </div>
+            <div class="member-card__meta">
+                {{ usuario.ocupacion }} · {{ usuario.edad }} años
+            </div>
+
+            <div class="member-card__detail">
+                <span class="member-card__detail-label">Correo</span>
+                <span class="member-card__detail-value">{{ usuario.correo_electronico }}</span>
+            </div>
+            <div class="member-card__detail">
+                <span class="member-card__detail-label">Ciudad</span>
+                <span class="member-card__detail-value">{{ usuario.ciudad_nacimiento }}</span>
+            </div>
+            <div class="member-card__detail">
+                <span class="member-card__detail-label">Moto</span>
+                <span class="member-card__detail-value">{{ usuario.modelo_vehiculo }}</span>
+            </div>
+            <div class="member-card__detail">
+                <span class="member-card__detail-label">Placa</span>
+                <span class="member-card__detail-value">{{ usuario.placa_vehiculo }}</span>
+            </div>
+
+            <div class="member-card__actions">
+                <a href="{% url 'editar_usuario' usuario.id %}" class="btn btn--secondary btn--small">
+                    Editar
+                </a>
+                <a href="{% url 'eliminar_usuario' usuario.id %}" class="btn btn--danger btn--small">
+                    Eliminar
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <p>Aún no hay miembros registrados. ¡Sé el primero en subirte!</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
