@@ -1,0 +1,25 @@
+<h1>Lista de Usuarios</h1>
+
+<a href="{% url 'crear_usuario_paso1' %}">
+    Crear Usuario
+</a>
+
+<hr>
+
+{% for usuario in usuarios %}
+
+<p>
+    {{ usuario.nombre }} |
+    {{ usuario.email }} |
+    {{ usuario.edad }}
+
+    <a href="{% url 'editar_usuario' usuario.id %}">
+        Editar
+    </a>
+
+    <a href="{% url 'eliminar_usuario' usuario.id %}">
+        Eliminar
+    </a>
+</p>
+
+{% endfor %}
